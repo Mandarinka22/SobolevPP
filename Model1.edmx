@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище SobolevPPModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Договоры">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_клиента" Type="int" />
+          <Property Name="Дата_заключения" Type="date" />
+          <Property Name="Стоимость" Type="money" />
+        </EntityType>
+        <EntityType Name="Зарплата">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="ФИО_сотрудника" Type="nvarchar" MaxLength="50" />
+          <Property Name="Должность" Type="nvarchar" MaxLength="50" />
+          <Property Name="Сумма" Type="money" />
+          <Property Name="Дата" Type="date" />
+        </EntityType>
+        <EntityType Name="Затраты">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Дата" Type="date" />
+          <Property Name="Описание" Type="nvarchar" MaxLength="50" />
+          <Property Name="Сумма" Type="money" />
+        </EntityType>
+        <EntityType Name="Клиенты">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="ФИО" Type="nvarchar" MaxLength="50" />
+          <Property Name="Адрес" Type="nvarchar" MaxLength="50" />
+          <Property Name="Номер_телефона" Type="nvarchar" MaxLength="50" />
+          <Property Name="Почта" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Оплаты">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_договора" Type="int" />
+          <Property Name="Сумма" Type="money" />
+          <Property Name="Дата" Type="date" />
+        </EntityType>
+        <EntityType Name="Отчет">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_оплаты" Type="int" />
+          <Property Name="id_зарплаты" Type="int" />
+          <Property Name="id_затрат" Type="int" />
+        </EntityType>
+        <Association Name="FK_Договоры_Клиенты">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Договоры">
+              <PropertyRef Name="id_клиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Оплаты_Договоры">
+          <End Role="Договоры" Type="Self.Договоры" Multiplicity="0..1" />
+          <End Role="Оплаты" Type="Self.Оплаты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Договоры">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Оплаты">
+              <PropertyRef Name="id_договора" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Отчет_Зарплата">
+          <End Role="Зарплата" Type="Self.Зарплата" Multiplicity="0..1" />
+          <End Role="Отчет" Type="Self.Отчет" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Зарплата">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Отчет">
+              <PropertyRef Name="id_зарплаты" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Отчет_Затраты">
+          <End Role="Затраты" Type="Self.Затраты" Multiplicity="0..1" />
+          <End Role="Отчет" Type="Self.Отчет" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Затраты">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Отчет">
+              <PropertyRef Name="id_затрат" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Отчет_Оплаты">
+          <End Role="Оплаты" Type="Self.Оплаты" Multiplicity="0..1" />
+          <End Role="Отчет" Type="Self.Отчет" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Оплаты">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Отчет">
+              <PropertyRef Name="id_оплаты" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище SobolevPPModelContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Договоры" EntityType="Self.Договоры" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Зарплата" EntityType="Self.Зарплата" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Затраты" EntityType="Self.Затраты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Клиенты" EntityType="Self.Клиенты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Оплаты" EntityType="Self.Оплаты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Отчет" EntityType="Self.Отчет" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Договоры_Клиенты" Association="Self.FK_Договоры_Клиенты">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Договоры" EntitySet="Договоры" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Оплаты_Договоры" Association="Self.FK_Оплаты_Договоры">
+            <End Role="Договоры" EntitySet="Договоры" />
+            <End Role="Оплаты" EntitySet="Оплаты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Отчет_Зарплата" Association="Self.FK_Отчет_Зарплата">
+            <End Role="Зарплата" EntitySet="Зарплата" />
+            <End Role="Отчет" EntitySet="Отчет" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Отчет_Затраты" Association="Self.FK_Отчет_Затраты">
+            <End Role="Затраты" EntitySet="Затраты" />
+            <End Role="Отчет" EntitySet="Отчет" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Отчет_Оплаты" Association="Self.FK_Отчет_Оплаты">
+            <End Role="Оплаты" EntitySet="Оплаты" />
+            <End Role="Отчет" EntitySet="Отчет" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SobolevPPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Договоры">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_клиента" Type="Int32" />
+          <Property Name="Дата_заключения" Type="DateTime" Precision="0" />
+          <Property Name="Стоимость" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Клиенты" Relationship="Self.FK_Договоры_Клиенты" FromRole="Договоры" ToRole="Клиенты" />
+          <NavigationProperty Name="Оплаты" Relationship="Self.FK_Оплаты_Договоры" FromRole="Договоры" ToRole="Оплаты" />
+        </EntityType>
+        <EntityType Name="Зарплата">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="ФИО_сотрудника" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Должность" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Сумма" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Дата" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Отчет" Relationship="Self.FK_Отчет_Зарплата" FromRole="Зарплата" ToRole="Отчет" />
+        </EntityType>
+        <EntityType Name="Затраты">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Дата" Type="DateTime" Precision="0" />
+          <Property Name="Описание" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Сумма" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Отчет" Relationship="Self.FK_Отчет_Затраты" FromRole="Затраты" ToRole="Отчет" />
+        </EntityType>
+        <EntityType Name="Клиенты">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="ФИО" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Номер_телефона" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Почта" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Договоры" Relationship="Self.FK_Договоры_Клиенты" FromRole="Клиенты" ToRole="Договоры" />
+        </EntityType>
+        <EntityType Name="Оплаты">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_договора" Type="Int32" />
+          <Property Name="Сумма" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Дата" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Договоры" Relationship="Self.FK_Оплаты_Договоры" FromRole="Оплаты" ToRole="Договоры" />
+          <NavigationProperty Name="Отчет" Relationship="Self.FK_Отчет_Оплаты" FromRole="Оплаты" ToRole="Отчет" />
+        </EntityType>
+        <EntityType Name="Отчет">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_оплаты" Type="Int32" />
+          <Property Name="id_зарплаты" Type="Int32" />
+          <Property Name="id_затрат" Type="Int32" />
+          <NavigationProperty Name="Зарплата" Relationship="Self.FK_Отчет_Зарплата" FromRole="Отчет" ToRole="Зарплата" />
+          <NavigationProperty Name="Затраты" Relationship="Self.FK_Отчет_Затраты" FromRole="Отчет" ToRole="Затраты" />
+          <NavigationProperty Name="Оплаты" Relationship="Self.FK_Отчет_Оплаты" FromRole="Отчет" ToRole="Оплаты" />
+        </EntityType>
+        <Association Name="FK_Договоры_Клиенты">
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Клиенты">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Договоры">
+              <PropertyRef Name="id_клиента" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Оплаты_Договоры">
+          <End Role="Договоры" Type="Self.Договоры" Multiplicity="0..1" />
+          <End Role="Оплаты" Type="Self.Оплаты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Договоры">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Оплаты">
+              <PropertyRef Name="id_договора" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Отчет_Зарплата">
+          <End Role="Зарплата" Type="Self.Зарплата" Multiplicity="0..1" />
+          <End Role="Отчет" Type="Self.Отчет" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Зарплата">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Отчет">
+              <PropertyRef Name="id_зарплаты" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Отчет_Затраты">
+          <End Role="Затраты" Type="Self.Затраты" Multiplicity="0..1" />
+          <End Role="Отчет" Type="Self.Отчет" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Затраты">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Отчет">
+              <PropertyRef Name="id_затрат" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Отчет_Оплаты">
+          <End Role="Оплаты" Type="Self.Оплаты" Multiplicity="0..1" />
+          <End Role="Отчет" Type="Self.Отчет" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Оплаты">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Отчет">
+              <PropertyRef Name="id_оплаты" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SobolevPPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Договоры" EntityType="Self.Договоры" />
+          <EntitySet Name="Зарплата" EntityType="Self.Зарплата" />
+          <EntitySet Name="Затраты" EntityType="Self.Затраты" />
+          <EntitySet Name="Клиенты" EntityType="Self.Клиенты" />
+          <EntitySet Name="Оплаты" EntityType="Self.Оплаты" />
+          <EntitySet Name="Отчет" EntityType="Self.Отчет" />
+          <AssociationSet Name="FK_Договоры_Клиенты" Association="Self.FK_Договоры_Клиенты">
+            <End Role="Клиенты" EntitySet="Клиенты" />
+            <End Role="Договоры" EntitySet="Договоры" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Оплаты_Договоры" Association="Self.FK_Оплаты_Договоры">
+            <End Role="Договоры" EntitySet="Договоры" />
+            <End Role="Оплаты" EntitySet="Оплаты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Отчет_Зарплата" Association="Self.FK_Отчет_Зарплата">
+            <End Role="Зарплата" EntitySet="Зарплата" />
+            <End Role="Отчет" EntitySet="Отчет" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Отчет_Затраты" Association="Self.FK_Отчет_Затраты">
+            <End Role="Затраты" EntitySet="Затраты" />
+            <End Role="Отчет" EntitySet="Отчет" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Отчет_Оплаты" Association="Self.FK_Отчет_Оплаты">
+            <End Role="Оплаты" EntitySet="Оплаты" />
+            <End Role="Отчет" EntitySet="Отчет" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SobolevPPModelContainer" CdmEntityContainer="SobolevPPEntities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="SobolevPPModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Договоры">
+            <EntityTypeMapping TypeName="SobolevPPModel.Договоры">
+              <MappingFragment StoreEntitySet="Договоры">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_клиента" ColumnName="id_клиента" />
+                <ScalarProperty Name="Дата_заключения" ColumnName="Дата_заключения" />
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Зарплата">
+            <EntityTypeMapping TypeName="SobolevPPModel.Зарплата">
+              <MappingFragment StoreEntitySet="Зарплата">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ФИО_сотрудника" ColumnName="ФИО_сотрудника" />
+                <ScalarProperty Name="Должность" ColumnName="Должность" />
+                <ScalarProperty Name="Сумма" ColumnName="Сумма" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Затраты">
+            <EntityTypeMapping TypeName="SobolevPPModel.Затраты">
+              <MappingFragment StoreEntitySet="Затраты">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="Описание" ColumnName="Описание" />
+                <ScalarProperty Name="Сумма" ColumnName="Сумма" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Клиенты">
+            <EntityTypeMapping TypeName="SobolevPPModel.Клиенты">
+              <MappingFragment StoreEntitySet="Клиенты">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Номер_телефона" ColumnName="Номер_телефона" />
+                <ScalarProperty Name="Почта" ColumnName="Почта" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Оплаты">
+            <EntityTypeMapping TypeName="SobolevPPModel.Оплаты">
+              <MappingFragment StoreEntitySet="Оплаты">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_договора" ColumnName="id_договора" />
+                <ScalarProperty Name="Сумма" ColumnName="Сумма" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Отчет">
+            <EntityTypeMapping TypeName="SobolevPPModel.Отчет">
+              <MappingFragment StoreEntitySet="Отчет">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_оплаты" ColumnName="id_оплаты" />
+                <ScalarProperty Name="id_зарплаты" ColumnName="id_зарплаты" />
+                <ScalarProperty Name="id_затрат" ColumnName="id_затрат" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -39,7 +40,7 @@ namespace SobolevPP
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var Search = db.Клиенты.ToList();
-            Search = Search.Where(x => x.ФИО.ToLower().StartsWith(Search_Box.Text.ToLower())).ToList();
+            Search = Search.Where(x => x.ФИО.ToLower().Contains(Search_Box.Text.ToLower())).ToList();
             tableGrid.ItemsSource = Search.ToList();
         }
 

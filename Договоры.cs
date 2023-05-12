@@ -21,9 +21,9 @@ namespace SobolevPP
         }
     
         public int id { get; set; }
-        public Nullable<int> id_клиента { get; set; }
+        public int id_клиента { get; set; }
         public Nullable<System.DateTime> Дата_заключения { get; set; }
-        public Nullable<decimal> Стоимость { get; set; }
+        public decimal Стоимость { get; set; }
     
         public virtual Клиенты Клиенты { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

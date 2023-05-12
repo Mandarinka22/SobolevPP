@@ -5,19 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SobolevPP"
         mc:Ignorable="d"
-        Title="add_1" Height="450" Width="800">
+        Title="add_1" Height="450" Width="550" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Background="#666666">
-        <Button Content="Добавить" HorizontalAlignment="Center" Margin="0,346,0,0" VerticalAlignment="Top" Height="39" Width="160"  Foreground="White" Background="#FF5D5B5B" BorderBrush="Black" FontSize="14" Click="Button_Click"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,79,0,0" TextWrapping="Wrap" Text="{Binding id}" VerticalAlignment="Top" Width="160" FontSize="14" Height="27"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,123,0,0" TextWrapping="Wrap" Text="{Binding Клиент}" VerticalAlignment="Top" Width="160" FontSize="14" Height="27"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,169,0,0" TextWrapping="Wrap" Text="{Binding Адрес}" VerticalAlignment="Top" Width="160" FontSize="14" Height="27"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,217,0,0" TextWrapping="Wrap" Text="{Binding Номер_телефона}" VerticalAlignment="Top" Width="160" FontSize="14" Height="29"/>
-        <TextBox HorizontalAlignment="Center" Margin="0,265,0,0" TextWrapping="Wrap" Text="{Binding Почта}" VerticalAlignment="Top" Width="160" FontSize="14" Height="25"/>
-        <Label Content="id" HorizontalAlignment="Left" Margin="260,80,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16"/>
-        <Label Content="Клиент" HorizontalAlignment="Left" Margin="239,121,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16"/>
-        <Label Content="Адрес" HorizontalAlignment="Left" Margin="244,166,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16"/>
-        <Label Content="Номер телефона" HorizontalAlignment="Left" Margin="167,215,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16"/>
-        <Label Content="Почта" HorizontalAlignment="Left" Margin="245,261,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16"/>
+        <Button Content="Добавить" HorizontalAlignment="Center" Margin="0,328,0,0" VerticalAlignment="Top" Height="39" Width="160"  Foreground="White" Background="#FF5D5B5B" BorderBrush="Black" FontSize="14" Click="Button_Click"/>
+        <TextBox HorizontalAlignment="Left" Margin="236,105,0,0" TextWrapping="Wrap" Text="{Binding ФИО}" VerticalAlignment="Top" Width="160" FontSize="14" Height="27"/>
+        <TextBox HorizontalAlignment="Left" Margin="236,151,0,0" TextWrapping="Wrap" Text="{Binding Адрес}" VerticalAlignment="Top" Width="160" FontSize="14" Height="27"/>
+        <TextBox HorizontalAlignment="Left" Margin="236,199,0,0" TextWrapping="Wrap" Text="{Binding Номер_телефона}" VerticalAlignment="Top" Width="160" FontSize="14" Height="29"/>
+        <TextBox HorizontalAlignment="Left" Margin="236,247,0,0" TextWrapping="Wrap" Text="{Binding Почта}" VerticalAlignment="Top" Width="160" FontSize="14" Height="25"/>
+        <Label Content="Клиент" HorizontalAlignment="Left" Margin="139,104,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16"/>
+        <Label Content="Адрес" HorizontalAlignment="Left" Margin="144,149,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16"/>
+        <Label Content="Номер телефона" HorizontalAlignment="Left" Margin="67,198,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16"/>
+        <Label Content="Почта" HorizontalAlignment="Left" Margin="145,244,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16"/>
+        <Label Content="Добавить клиента" HorizontalAlignment="Left" Margin="189,38,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" FontWeight="Bold" FontFamily="Sitka Small"/>
 
     </Grid>
 </Window>

@@ -15,20 +15,28 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="Авторизация">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Логин" Type="nvarchar" MaxLength="50" />
+          <Property Name="Пароль" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Договоры">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="id_клиента" Type="int" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_клиента" Type="int" Nullable="false" />
           <Property Name="Дата_заключения" Type="date" />
-          <Property Name="Стоимость" Type="money" />
+          <Property Name="Стоимость" Type="money" Nullable="false" />
         </EntityType>
         <EntityType Name="Зарплата">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ФИО_сотрудника" Type="nvarchar" MaxLength="50" />
           <Property Name="Должность" Type="nvarchar" MaxLength="50" />
           <Property Name="Сумма" Type="money" />
@@ -38,7 +46,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Дата" Type="date" />
           <Property Name="Описание" Type="nvarchar" MaxLength="50" />
           <Property Name="Сумма" Type="money" />
@@ -47,7 +55,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ФИО" Type="nvarchar" MaxLength="50" />
           <Property Name="Адрес" Type="nvarchar" MaxLength="50" />
           <Property Name="Номер_телефона" Type="nvarchar" MaxLength="50" />
@@ -57,7 +65,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_договора" Type="int" />
           <Property Name="Сумма" Type="money" />
           <Property Name="Дата" Type="date" />
@@ -66,13 +74,13 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_оплаты" Type="int" />
           <Property Name="id_зарплаты" Type="int" />
           <Property Name="id_затрат" Type="int" />
         </EntityType>
         <Association Name="FK_Договоры_Клиенты">
-          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="1" />
           <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Клиенты">
@@ -119,7 +127,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Отчет_Оплаты">
+        <Association Name="FK_Отчет_Оплаты1">
           <End Role="Оплаты" Type="Self.Оплаты" Multiplicity="0..1" />
           <End Role="Отчет" Type="Self.Отчет" Multiplicity="*" />
           <ReferentialConstraint>
@@ -133,6 +141,7 @@
         </Association>
         <EntityContainer Name="Хранилище SobolevPPModelContainer">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Авторизация" EntityType="Self.Авторизация" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Договоры" EntityType="Self.Договоры" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Зарплата" EntityType="Self.Зарплата" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Затраты" EntityType="Self.Затраты" Schema="dbo" store:Type="Tables" />
@@ -155,7 +164,7 @@
             <End Role="Затраты" EntitySet="Затраты" />
             <End Role="Отчет" EntitySet="Отчет" />
           </AssociationSet>
-          <AssociationSet Name="FK_Отчет_Оплаты" Association="Self.FK_Отчет_Оплаты">
+          <AssociationSet Name="FK_Отчет_Оплаты1" Association="Self.FK_Отчет_Оплаты1">
             <End Role="Оплаты" EntitySet="Оплаты" />
             <End Role="Отчет" EntitySet="Отчет" />
           </AssociationSet>
@@ -175,14 +184,22 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="Авторизация">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Логин" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Пароль" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Договоры">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_клиента" Type="Int32" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_клиента" Type="Int32" Nullable="false" />
           <Property Name="Дата_заключения" Type="DateTime" Precision="0" />
-          <Property Name="Стоимость" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Стоимость" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <NavigationProperty Name="Клиенты" Relationship="Self.FK_Договоры_Клиенты" FromRole="Договоры" ToRole="Клиенты" />
           <NavigationProperty Name="Оплаты" Relationship="Self.FK_Оплаты_Договоры" FromRole="Договоры" ToRole="Оплаты" />
         </EntityType>
@@ -190,7 +207,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ФИО_сотрудника" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Должность" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Сумма" Type="Decimal" Precision="19" Scale="4" />
@@ -201,7 +218,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Дата" Type="DateTime" Precision="0" />
           <Property Name="Описание" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Сумма" Type="Decimal" Precision="19" Scale="4" />
@@ -211,7 +228,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ФИО" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Номер_телефона" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -222,27 +239,27 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_договора" Type="Int32" />
           <Property Name="Сумма" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Дата" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Договоры" Relationship="Self.FK_Оплаты_Договоры" FromRole="Оплаты" ToRole="Договоры" />
-          <NavigationProperty Name="Отчет" Relationship="Self.FK_Отчет_Оплаты" FromRole="Оплаты" ToRole="Отчет" />
+          <NavigationProperty Name="Отчет" Relationship="Self.FK_Отчет_Оплаты1" FromRole="Оплаты" ToRole="Отчет" />
         </EntityType>
         <EntityType Name="Отчет">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_оплаты" Type="Int32" />
           <Property Name="id_зарплаты" Type="Int32" />
           <Property Name="id_затрат" Type="Int32" />
           <NavigationProperty Name="Зарплата" Relationship="Self.FK_Отчет_Зарплата" FromRole="Отчет" ToRole="Зарплата" />
           <NavigationProperty Name="Затраты" Relationship="Self.FK_Отчет_Затраты" FromRole="Отчет" ToRole="Затраты" />
-          <NavigationProperty Name="Оплаты" Relationship="Self.FK_Отчет_Оплаты" FromRole="Отчет" ToRole="Оплаты" />
+          <NavigationProperty Name="Оплаты" Relationship="Self.FK_Отчет_Оплаты1" FromRole="Отчет" ToRole="Оплаты" />
         </EntityType>
         <Association Name="FK_Договоры_Клиенты">
-          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="0..1" />
+          <End Role="Клиенты" Type="Self.Клиенты" Multiplicity="1" />
           <End Role="Договоры" Type="Self.Договоры" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Клиенты">
@@ -289,7 +306,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Отчет_Оплаты">
+        <Association Name="FK_Отчет_Оплаты1">
           <End Role="Оплаты" Type="Self.Оплаты" Multiplicity="0..1" />
           <End Role="Отчет" Type="Self.Отчет" Multiplicity="*" />
           <ReferentialConstraint>
@@ -303,6 +320,7 @@
         </Association>
         <EntityContainer Name="SobolevPPEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Авторизация" EntityType="Self.Авторизация" />
           <EntitySet Name="Договоры" EntityType="Self.Договоры" />
           <EntitySet Name="Зарплата" EntityType="Self.Зарплата" />
           <EntitySet Name="Затраты" EntityType="Self.Затраты" />
@@ -325,7 +343,7 @@
             <End Role="Затраты" EntitySet="Затраты" />
             <End Role="Отчет" EntitySet="Отчет" />
           </AssociationSet>
-          <AssociationSet Name="FK_Отчет_Оплаты" Association="Self.FK_Отчет_Оплаты">
+          <AssociationSet Name="FK_Отчет_Оплаты1" Association="Self.FK_Отчет_Оплаты1">
             <End Role="Оплаты" EntitySet="Оплаты" />
             <End Role="Отчет" EntitySet="Отчет" />
           </AssociationSet>
@@ -344,6 +362,15 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Авторизация">
+            <EntityTypeMapping TypeName="SobolevPPModel.Авторизация">
+              <MappingFragment StoreEntitySet="Авторизация">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

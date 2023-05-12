@@ -16,30 +16,29 @@ using System.Windows.Shapes;
 namespace SobolevPP
 {
     /// <summary>
-    /// Логика взаимодействия для UserControl3.xaml
+    /// Логика взаимодействия для UserControl5.xaml
     /// </summary>
-    public partial class UserControl3 : UserControl
+    public partial class UserControl5 : UserControl
     {
         SobolevPPEntities db;
-        List<Оплаты> tb;
-        public UserControl3()
+        List<Затраты> tb;
+        public UserControl5()
         {
             InitializeComponent();
             db = new SobolevPPEntities();
-            tb = db.Оплаты.ToList();
+            tb = db.Затраты.ToList();
             tableGrid.ItemsSource = tb;
         }
         private void refreshdatagrid()
         {
-            tableGrid.ItemsSource = db.Оплаты.ToList();
+            tableGrid.ItemsSource = db.Затраты.ToList();
             tableGrid.Items.Refresh();
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var nw = new Оплаты();
-            db.Оплаты.Add(nw);
-            add_3 add = new add_3(db, nw);
+            var nw = new Затраты();
+            db.Затраты.Add(nw);
+            add_5 add = new add_5(db, nw);
             add.ShowDialog();
             refreshdatagrid();
         }
@@ -52,9 +51,9 @@ namespace SobolevPP
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             db = new SobolevPPEntities();
-            Оплаты item = tableGrid.SelectedItem as Оплаты;
-            Оплаты del = db.Оплаты.Where(d => d.id == item.id).Single();
-            db.Оплаты.Remove(del);
+            Затраты item = tableGrid.SelectedItem as Затраты;
+            Затраты del = db.Затраты.Where(d => d.id == item.id).Single();
+            db.Затраты.Remove(del);
             db.SaveChanges();
             MessageBox.Show("Строка успешно удалена!");
             refreshdatagrid();

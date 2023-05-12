@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SobolevPP"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" d:DesignWidth="900" Height="585">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -13,7 +12,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="tableGrid" AutoGenerateColumns="False" Margin="135,18,10,10" Background="#666666">
+        <DataGrid x:Name="tableGrid" AutoGenerateColumns="False" Margin="10,34,10,152" Background="#666666" >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding ФИО}" Width="*" Header="Клиент"/>
                 <DataGridTextColumn Binding="{Binding Адрес}" Width="*" Header="Адрес"/>
@@ -21,10 +20,11 @@
                 <DataGridTextColumn Binding="{Binding Почта}" Width="*" Header="Почта"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Поиск по ФИО" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
-        <TextBox x:Name="Search_Box" HorizontalAlignment="Left" Margin="0,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" Foreground="White" Background="#FF5D5B5B" BorderBrush="Black" FontSize="14" TextChanged="SearchBox_TextChanged"/>
-        <Button Content="Добавить" HorizontalAlignment="Left" Margin="14,118,0,0" VerticalAlignment="Top" Height="26" Width="102" Foreground="White" Background="#FF5D5B5B" BorderBrush="Black" FontSize="14" Click="Button_Click"/>
-        <Button Content="Обновить" HorizontalAlignment="Left" Margin="14,163,0,0" VerticalAlignment="Top" Height="26" Width="102" Foreground="White" Background="#FF5D5B5B" BorderBrush="Black" FontSize="14" Click="Button_Click_1"/>
-        <Button Content="Удалить" HorizontalAlignment="Left" Margin="14,204,0,0" VerticalAlignment="Top" Height="26" Width="102" Foreground="White" Background="#FF5D5B5B" BorderBrush="Black" FontSize="14" Click="Button_Click_2"/>
+        <Label Content="Поиск по ФИО" HorizontalAlignment="Left" Margin="18,464,0,0" VerticalAlignment="Top" Foreground="White" FontSize="14"/>
+        <TextBox x:Name="Search_Box" HorizontalAlignment="Left" Margin="10,443,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="129" Foreground="White" Background="#FF5D5B5B" BorderBrush="Black" FontSize="14" TextChanged="SearchBox_TextChanged"/>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="236,440,0,0" VerticalAlignment="Top" Height="26" Width="102" Foreground="White" Background="#FF5D5B5B" BorderBrush="Black" FontSize="14" Click="Button_Click"/>
+        <Button Content="Обновить" HorizontalAlignment="Left" Margin="371,440,0,0" VerticalAlignment="Top" Height="26" Width="102" Foreground="White" Background="#FF5D5B5B" BorderBrush="Black" FontSize="14" Click="Button_Click_1"/>
+        <Button Content="Удалить" HorizontalAlignment="Left" Margin="502,440,0,0" VerticalAlignment="Top" Height="26" Width="102" Foreground="White" Background="#FF5D5B5B" BorderBrush="Black" FontSize="14" Click="Button_Click_2"/>
+        <Label Content="Клиенты" Foreground="White" HorizontalAlignment="Left" Margin="16,2,0,0" VerticalAlignment="Top" FontSize="18" FontStyle="Italic"/>
     </Grid>
 </UserControl>

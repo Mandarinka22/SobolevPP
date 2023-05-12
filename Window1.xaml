@@ -1,0 +1,18 @@
+﻿<Window x:Class="SobolevPP.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SobolevPP"
+        mc:Ignorable="d"
+        Title="Window1" Height="450" Width="600" Background="#666666" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="ВХОД" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" FontSize="22" Foreground="White" FontWeight="Bold" FontFamily="Book Antiqua"/>
+        <Label Content="Логин" HorizontalAlignment="Left" Margin="144,148,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16"/>
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="144,0,0,0" VerticalAlignment="Center" Foreground="White" FontSize="16"/>
+        <TextBox x:Name="loginbox" HorizontalAlignment="Center" Margin="0,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130" FontSize="16"/>
+        <PasswordBox x:Name="passbox" HorizontalAlignment="Center" VerticalAlignment="Center" Width="132" FontSize="16"/>
+        <Button Content="Войти" HorizontalAlignment="Center" Margin="0,307,0,0" VerticalAlignment="Top" Height="29" Width="102" FontSize="16" Click="Button_Click"/>
+
+    </Grid>
+</Window>

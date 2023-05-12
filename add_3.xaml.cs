@@ -10,24 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace SobolevPP
 {
     /// <summary>
-    /// Логика взаимодействия для UserControl2.xaml
+    /// Логика взаимодействия для add_3.xaml
     /// </summary>
-    public partial class UserControl2 : UserControl
+    public partial class add_3 : Window
     {
         SobolevPPEntities db;
-        List<Договоры> tb;
-        public UserControl2()
+        public add_3(SobolevPPEntities db, Оплаты c)
         {
             InitializeComponent();
-            db = new SobolevPPEntities();
-            tb = db.Договоры.ToList();
-            tableGrid.ItemsSource = tb;
+            this.db = db;
+            this.DataContext = c;
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Строка успешно добавлена!");
+            db.SaveChanges();
+            this.Close();
         }
     }
 }

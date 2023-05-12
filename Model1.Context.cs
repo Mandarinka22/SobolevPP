@@ -26,6 +26,7 @@ namespace SobolevPP
         }
     
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Авторизация> Авторизация { get; set; }
         public virtual DbSet<Договоры> Договоры { get; set; }
         public virtual DbSet<Зарплата> Зарплата { get; set; }
         public virtual DbSet<Затраты> Затраты { get; set; }

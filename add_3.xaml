@@ -1,0 +1,20 @@
+﻿<Window x:Class="SobolevPP.add_3"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SobolevPP"
+        mc:Ignorable="d"
+        Title="add_3" Height="450" Width="550" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid Background="#666666">
+        <Button Content="Добавить" HorizontalAlignment="Center" Margin="0,328,0,0" VerticalAlignment="Top" Height="39" Width="160"  Foreground="White" Background="#FF5D5B5B" BorderBrush="Black" FontSize="14" Click="Button_Click"/>
+        <TextBox HorizontalAlignment="Left" Margin="235,150,0,0" TextWrapping="Wrap" Text="{Binding id_договора}" VerticalAlignment="Top" Width="160" FontSize="14" Height="27"/>
+        <TextBox HorizontalAlignment="Left" Margin="236,199,0,0" TextWrapping="Wrap" Text="{Binding Сумма,StringFormat='0р'}" VerticalAlignment="Top" Width="160" FontSize="14" Height="29"/>
+        <TextBox HorizontalAlignment="Left" Margin="236,247,0,0" TextWrapping="Wrap" Text="{Binding Дата, StringFormat='dd.MM.yyyy'}" VerticalAlignment="Top" Width="160" FontSize="14" Height="27"/>
+        <Label Content="ФИО" HorizontalAlignment="Left" Margin="168,149,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16"/>
+        <Label Content="Сумма зарплаты" HorizontalAlignment="Left" Margin="92,196,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16"/>
+        <Label Content="Дата начала работы" HorizontalAlignment="Left" Margin="77,244,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16"/>
+        <Label Content="Добавить оплату" HorizontalAlignment="Center" Margin="0,38,0,0" VerticalAlignment="Top" Foreground="White" FontSize="20" FontWeight="Bold" FontFamily="Sitka Small"/>
+
+    </Grid>
+</Window>

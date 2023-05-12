@@ -5,20 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SobolevPP"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="585" Width="1300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Grid Background="#808080">
 
-        <StackPanel Grid.Row="0" Orientation="Vertical" Background="#333333" Margin="0,0,610,0">
-            <Button x:Name="button1" Content="Клиенты" Height="27" Width="183" Margin="0,30,0,0" FontSize="14" Background="#666666" Foreground="White" Click="button1_Click"/>
-            <Button x:Name="button2" Content="Договоры" Height="27" Width="183" Margin="0,15,0,0" FontSize="14" Background="#666666" Foreground="White" Click="button2_Click"/>
-            <Button x:Name="button3" Content="Оплаты" Height="27" Width="183" Margin="0,15,0,0" FontSize="14" Background="#666666" Foreground="White" Click="button3_Click"/>
-            <Button x:Name="button4" Content="Зарплата" Height="27" Width="183" Margin="0,15,0,0" FontSize="14" Background="#666666" Foreground="White" Click="button4_Click"/>
-            <Button x:Name="button5" Content="Затраты" Height="27" Width="183" Margin="0,15,0,0" FontSize="14" Background="#666666" Foreground="White" Click="button5_Click"/>
-            <Button x:Name="button6" Content="Отчет" Height="27" Width="183" Margin="0,15,0,0" FontSize="14" Background="#666666" Foreground="White" Click="button6_Click"/>
-            <Button x:Name="button7" Content="Выход" Height="27" Width="106" Margin="0,100,0,0" Background="#666666" Foreground="White" />
+        <StackPanel Orientation="Vertical" Background="#333333" HorizontalAlignment="Left" VerticalAlignment="Center" Height="569" Width="221" >
+            <Button x:Name="button1" Content="Клиенты" Height="27" Width="183" Margin="0,30,0,0" FontSize="16" Background="#666666" Foreground="White" Click="button1_Click"/>
+            <Button x:Name="button2" Content="Договоры" Height="27" Width="183" Margin="0,15,0,0" FontSize="16" Background="#666666" Foreground="White" Click="button2_Click"/>
+            <Button x:Name="button3" Content="Оплаты" Height="27" Width="183" Margin="0,15,0,0" FontSize="16" Background="#666666" Foreground="White" Click="button3_Click"/>
+            <Button x:Name="button4" Content="Зарплата" Height="27" Width="183" Margin="0,15,0,0" FontSize="16" Background="#666666" Foreground="White" Click="button4_Click"/>
+            <Button x:Name="button5" Content="Затраты" Height="27" Width="183" Margin="0,15,0,0" FontSize="16" Background="#666666" Foreground="White" Click="button5_Click"/>
+            <Button x:Name="button6" Content="Отчет" Height="27" Width="183" Margin="0,15,0,0" FontSize="16" Background="#666666" Foreground="White" Click="button6_Click"/>
+            <Button x:Name="button7" Content="Выход" Height="27" Width="120" Margin="0,200,0,0" FontSize="16" Background="#666666" Foreground="White" Click="button7_Click"/>
+
         </StackPanel>
         <Grid Grid.Row="1">
-            <Frame x:Name="frame" Margin="200,10,10,10" />
+            <Frame x:Name="frame" Margin="237,10,10,10" />
+            <Label x:Name="v" Content="Учет финансовой деятельности нотариуса" Visibility="Visible" FontSize="32" Foreground="White" HorizontalAlignment="Left" Margin="432,0,0,0" VerticalAlignment="Center" Height="61" Width="703"/>
+
         </Grid>
     </Grid>
 </Window>
